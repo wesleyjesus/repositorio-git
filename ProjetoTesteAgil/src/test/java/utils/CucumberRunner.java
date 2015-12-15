@@ -11,7 +11,5 @@ import cucumber.api.junit.Cucumber;
 		features = {"src/test/java/feature/"}
 		)
 public class CucumberRunner {
-	
-	
-	
+			
 }
