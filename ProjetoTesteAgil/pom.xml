@@ -5,7 +5,6 @@
 	<groupId>bdd</groupId>
 	<artifactId>ProjetoTesteAgil</artifactId>
 	<version>1.2.5-SNAPSHOT</version>
-	<packaging>pom</packaging>
 	<name>Teste-Agile</name>
 	<url>http://maven.apache.org</url>
 	
@@ -27,6 +26,7 @@
 		<hsqldb.version>2.3.2</hsqldb.version>
 		<junit.version>4.12</junit.version>
 		<selenium.version>2.48.2</selenium.version>
+		<xmlunit.version>1.6</xmlunit.version>
 	</properties>
 	
 
@@ -52,11 +52,11 @@
 			<artifactId>cucumber-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>info.cukes</groupId> -->
+<!-- 			<artifactId>cucumber-java</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java8</artifactId>
@@ -168,11 +168,11 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-<!--             <dependency> -->
-<!--                 <groupId>org.seleniumhq.selenium</groupId> -->
-<!--                 <artifactId>selenium-server</artifactId> -->
-<!--                 <version>${selenium.version}</version> -->
-<!--             </dependency> -->
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-server</artifactId>
+                <version>${selenium.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-java</artifactId>
@@ -183,6 +183,12 @@
                         <artifactId>commons-logging</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            
+            <dependency>
+                <groupId>xmlunit</groupId>
+                <artifactId>xmlunit</artifactId>
+                <version>${xmlunit.version}</version>
             </dependency>
             
             <dependency>
@@ -231,4 +237,5 @@
     </profiles>
 	
   
+    <packaging>pom</packaging>
 </project>

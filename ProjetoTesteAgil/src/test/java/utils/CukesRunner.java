@@ -6,9 +6,10 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty", "html:target/test-report",
-							"json:target/test-report.json"},
-				monochrome = true)
+@CucumberOptions(
+    tags = {"@run"}, 
+    plugin = {"html:target/cucumber-html-report", "json-pretty:target/cucumber-json-report.json"}
+)
 public class CukesRunner {
 
 }
