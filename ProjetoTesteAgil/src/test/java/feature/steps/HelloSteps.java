@@ -1,4 +1,4 @@
-package feature.steps.def;
+package feature.steps;
 
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
@@ -11,7 +11,7 @@ public class HelloSteps {
 	private Hello hello;
 	private String hi;
 	
-	@Dado("^Minha saudacao \"([^\"]*)\"$")
+	@Dado("^Minha saudaca \"([^\"]*)\"$")
 	public void minha_saudacao_com(String greenting){
 		hello = new Hello(greenting);
 	}

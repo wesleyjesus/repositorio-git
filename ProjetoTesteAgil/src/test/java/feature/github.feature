@@ -9,4 +9,4 @@ Feature: Busca Github
   Scenario: Busca por projeto
     Given Eu estou no site "http://github.com"
     When Eu procuro por "cucumber"    
-    Then Eu deveria encontrar um link com descricao "cucumber / cucumber"
+    Then Eu deveria encontrar um link com descricao "cucumber/cucumber"

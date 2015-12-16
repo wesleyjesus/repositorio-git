@@ -30,16 +30,16 @@ public class BaseTesteSelenium {
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	}
 
-//	@After
-//	public void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 //		UtilSeleniumTestes.logout(driver);
-//		driver.quit();
-//	}
-
-	private void configureBasicProperties() {
-		baseUrl = properties.getProperty("baseurl");
-		usuario = properties.getProperty("usuario");
-		senha = properties.getProperty("senha");
+		driver.quit();
 	}
+
+	 private void configureBasicProperties() {
+	 baseUrl = properties.getProperty("baseurl");
+	 usuario = properties.getProperty("usuario");
+	 senha = properties.getProperty("senha");
+	 }
 
 }

@@ -19,6 +19,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<minimum.maven.version>3.1.1</minimum.maven.version>
 		<outputDirectory>${project.build.directory}</outputDirectory>
+		<gherkin3.version>3.0.0</gherkin3.version>
 		<javaee-api.version>7.0</javaee-api.version>
 		<spring.version>4.2.3.RELEASE</spring.version>
         <spring.data.version>1.9.1.RELEASE</spring.data.version>
@@ -27,11 +28,17 @@
 		<junit.version>4.12</junit.version>
 		<selenium.version>2.48.2</selenium.version>
 		<xmlunit.version>1.6</xmlunit.version>
+		<slf4j-simple.version>1.7.13</slf4j-simple.version>
 	</properties>
 	
 
 	<dependencies>
 
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-jvm-deps</artifactId>
@@ -52,17 +59,16 @@
 			<artifactId>cucumber-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>info.cukes</groupId> -->
-<!-- 			<artifactId>cucumber-java</artifactId> -->
-<!-- 			<version>${project.version}</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java8</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
@@ -72,6 +78,12 @@
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-html</artifactId>
 			<version>0.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>gherkin3</artifactId>
+			<version>${gherkin3.version}</version>
 		</dependency>
 		
 		<dependency>
@@ -161,12 +173,20 @@
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-firefox-driver</artifactId>
                 <version>${selenium.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
             </dependency>
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
@@ -177,12 +197,20 @@
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-java</artifactId>
                 <version>${selenium.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
             </dependency>
             
             <dependency>
@@ -196,6 +224,12 @@
                 <artifactId>javaee-api</artifactId>
                 <version>${javaee-api.version}</version>
                 <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+            	<groupId>org.slf4j</groupId>
+            	<artifactId>slf4j-simple</artifactId>
+            	<version>${slf4j-simple.version}</version>
             </dependency>
 		
 	</dependencies>
@@ -217,25 +251,46 @@
         </pluginRepository>
     </pluginRepositories>
     
-    <profiles>
-        <profile>
-            <id>java8</id>
-            <activation>
-                <jdk>1.8</jdk>
-            </activation>
-            <modules>
-                <module>java8</module>
-            </modules>
-        </profile>
-
-        <profile>
-            <id>junit-4.12</id>
-            <properties>
-                <junit.version>4.12</junit.version>
-            </properties>
-        </profile>
-    </profiles>
-	
+    <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.7.0-9</version>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>[${minimum.maven.version},)</version>
+                                </requireMavenVersion>
+                                <requirePluginVersions>
+                                    <message>Best Practice is to always define plugin versions!</message>
+                                    <banLatest>true</banLatest>
+                                    <banRelease>true</banRelease>
+                                    <banSnapshots>true</banSnapshots>
+                                    <phases>clean,deploy,site</phases>
+                                    <unCheckedPluginList>org.codehaus.mojo:cobertura-maven-plugin</unCheckedPluginList>
+                                </requirePluginVersions>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>commons-logging</exclude>
+                                        <!-- use slf4j -->
+                                        <exclude>log4j</exclude>
+                                        <!-- use slf4j -->
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
   
     <packaging>pom</packaging>
 </project>

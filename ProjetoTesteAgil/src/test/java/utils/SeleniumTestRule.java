@@ -20,11 +20,7 @@ public class SeleniumTestRule implements TestRule {
 
 			@Override
 			public void evaluate() throws Throwable {
-				if (System.getProperty("jenkins") != null) {
-					properties.load(this.getClass().getClassLoader().getResourceAsStream("selenium-tests.properties"));
-				} else {
-					properties.load(this.getClass().getClassLoader().getResourceAsStream("selenium-tests-local.properties"));
-				}
+				properties.load(this.getClass().getClassLoader().getResourceAsStream("selenium-tests.properties"));
 				base.evaluate();
 			}
 		};

@@ -1,6 +1,6 @@
-package feature.steps.def;
+package feature.steps;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +40,7 @@ public class PesquisaGoogleSteps {
 		Assert.assertEquals(driver.getTitle(), "walstore");
 	}
 	
-	@After()
+	@AfterClass()
 	public void closeBrowser(){
 		driver.quit();
 	}

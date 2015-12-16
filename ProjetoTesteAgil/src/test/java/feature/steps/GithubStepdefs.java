@@ -1,7 +1,8 @@
-package feature.steps.def;
+package feature.steps;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,6 +33,11 @@ public class GithubStepdefs {
 	public void eu_deveria_encontrar_um_link_com_descricao (String expectedLinkText) throws Exception {
 		Assert.assertNotNull(driver.findElement(By
 			.linkText(expectedLinkText)));
-			driver.quit();
 	}
+	
+	@AfterClass()
+	public void closeBrowser(){
+		driver.quit();
+	}
+	
 }
