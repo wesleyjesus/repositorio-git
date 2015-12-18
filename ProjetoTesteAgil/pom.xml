@@ -21,7 +21,6 @@
 		<minimum.maven.version>3.1.1</minimum.maven.version>
 		<outputDirectory>${project.build.directory}</outputDirectory>
 		<gherkin.version>2.12.2</gherkin.version>
-		<gherkin3.version>3.0.0</gherkin3.version>
 		<javaee-api.version>7.0</javaee-api.version>
 		<javax.inject.version>1</javax.inject.version>
 		<spring.version>4.2.3.RELEASE</spring.version>
@@ -34,7 +33,9 @@
 		<slf4j-simple.version>1.7.13</slf4j-simple.version>
 		<cucumber-reporting.version>1.0.0</cucumber-reporting.version>
         <!-- Por alguma razão, a atualização cobertura rompe completamente toda a compilação (?!) -->
-        <cobertura.version>1.9.4.1</cobertura.version>
+        <cobertura.version>2.1.1</cobertura.version>
+        <mockito.version>2.0.33-beta</mockito.version>
+        <mockito-all.version>2.0.2-beta</mockito-all.version>
         
 	</properties>
 	
@@ -78,11 +79,11 @@
 			<artifactId>cucumber-java</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-java8</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>info.cukes</groupId> -->
+<!-- 			<artifactId>cucumber-java8</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
@@ -97,11 +98,6 @@
 			<groupId>net.masterthought</groupId>
 			<artifactId>cucumber-reporting</artifactId>
 			<version>${cucumber-reporting.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>gherkin3</artifactId>
-			<version>${gherkin3.version}</version>
 		</dependency>
 		<!-- Fim Dependências Cucumber -->
 		
@@ -200,14 +196,14 @@
                 <artifactId>selenium-firefox-driver</artifactId>
                 <version>${selenium.version}</version>
 				<exclusions>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-log4j12</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
-					</exclusion>
+<!-- 					<exclusion> -->
+<!-- 						<groupId>org.slf4j</groupId> -->
+<!-- 						<artifactId>slf4j-log4j12</artifactId> -->
+<!-- 					</exclusion> -->
+<!-- 					<exclusion> -->
+<!-- 						<groupId>log4j</groupId> -->
+<!-- 						<artifactId>log4j</artifactId> -->
+<!-- 					</exclusion> -->
 					<exclusion>
 						<groupId>commons-logging</groupId>
 						<artifactId>commons-logging</artifactId>
@@ -224,14 +220,14 @@
                 <artifactId>selenium-java</artifactId>
                 <version>${selenium.version}</version>
 				<exclusions>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-log4j12</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
-					</exclusion>
+<!-- 					<exclusion> -->
+<!-- 						<groupId>org.slf4j</groupId> -->
+<!-- 						<artifactId>slf4j-log4j12</artifactId> -->
+<!-- 					</exclusion> -->
+<!-- 					<exclusion> -->
+<!-- 						<groupId>log4j</groupId> -->
+<!-- 						<artifactId>log4j</artifactId> -->
+<!-- 					</exclusion> -->
 					<exclusion>
 						<groupId>commons-logging</groupId>
 						<artifactId>commons-logging</artifactId>
@@ -269,12 +265,23 @@
                 <groupId>net.sourceforge.cobertura</groupId>
                 <artifactId>cobertura</artifactId>
                 <version>${cobertura.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
+<!--                 <exclusions> -->
+<!--                     <exclusion> -->
+<!--                         <groupId>log4j</groupId> -->
+<!--                         <artifactId>log4j</artifactId> -->
+<!--                     </exclusion> -->
+<!--                 </exclusions> -->
+            </dependency>
+            
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
             </dependency>
 		
 	</dependencies>
