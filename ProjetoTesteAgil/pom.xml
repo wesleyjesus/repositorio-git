@@ -31,10 +31,10 @@
 		<selenium.version>2.48.2</selenium.version>
 		<xmlunit.version>1.6</xmlunit.version>
 		<slf4j-simple.version>1.7.13</slf4j-simple.version>
-		<cucumber-reporting.version>1.0.0</cucumber-reporting.version>
+		<cucumber-reporting.version>1.1.0</cucumber-reporting.version>
         <!-- Por alguma razão, a atualização cobertura rompe completamente toda a compilação (?!) -->
         <cobertura.version>2.1.1</cobertura.version>
-        <mockito.version>2.0.33-beta</mockito.version>
+        <mockito.version>2.0.36-beta</mockito.version>
         <mockito-all.version>2.0.2-beta</mockito-all.version>
         
 	</properties>
